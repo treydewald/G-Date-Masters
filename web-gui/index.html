@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dating-App Management Portal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="description" content="Web GUI for Researcher Workflow">
+        <link rel="stylesheet" href="custom.css">
+
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <!-- This is a test that works to add users to the authentication page for adding user is Firebase -->
+        <!--<script type="text/javascript" src="firebaseUserTest.js"></script>-->
+
+    </head>
+<body>
+    <header class="main-header">
+        <div class="mh-content">
+            <h2>Researcher Portal</h2>
+        </div>
+    </header>
+
+    <div class="r-options">
+        <div class="r-buttons">
+            <h4>Options</h4>
+            <!-- Currently Incomplete: Opens model to add new user however just create firestore user -->
+            <button id="newUserBtn">Add New User</button>
+            <button type="button" onclick="getSData()">Get Specific Data (get bots)</button>
+            <input type="button" value="SignUp" onclick = "signUpButton_TouchUpInside()">
+        </div>
+        <div id="r-table">
+            <h4>Results</h4>
+            <table id="resultsTable">
+                <tr>
+                  <th>appIdentifier</th>
+                  <th>userID</th>
+                  <th>firstName</th>
+                  <th>lastName</th>
+                  <th>email</th>
+                  <th>phone</th>
+                  <th>isOnline</th>
+                  <th>pushToken</th>
+                  <th>role</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <button class="devOnly" type="button" onclick="addUser()">Add Users</button>
+    <button class="devOnly" type="button" onclick="getData()">Get Data</button>
+    <button class="devOnly" type="button" onclick="getAData()">Get All Data</button>
+    <button class="devOnly" type="button" onclick="testFunction()">Test function</button>
+
+    <!-- Modal for creating new user -->
+    <div id="newUserModel" class="modal">
+
+        <!-- Modal content and Form -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Create New User</h2>
+            </div>
+            <div class="modal-body">
+                <form id="formUpdateUserData">
+                    <div class="formItem">appIdentifier: </div>
+                    <div class="formItem"><input type="text" name="appIdentifier" value="default"></div>
+                    <div class="formItem">userID: </div>
+                    <div class="formItem"><input type="text" name="userID" value="123456ABCdef"></div>
+                    <div class="formItem">firstName: </div>
+                    <div class="formItem"><input type="text" name="firstName" value="Miles"></div>
+                    <div class="formItem">lastName: </div>
+                    <div class="formItem"><input type="text" name="fname" value="Morales"></div>
+                    <div class="formItem">email: </div>
+                    <div class="formItem"><input type="text" name="email" value="test@gdate.com"></div>
+                    <div class="formItem">phone: </div>
+                    <div class="formItem"><input type="text" name="phoneNumber" value="555-555-5555"></div>
+                    <div class="formItem">isOnline: </div>
+                    <div class="formItem"><input type="number" name="isOnline" value="0"></div>
+                    <div class="formItem">location: </div>
+                    <div class="formItem"><input class="locationLL" type="text" name="latitude" value="Latitude"> <input class="locationLL" type="text" name="longitude" value="Longitude"></div>
+                    <div class="formItem">profilePictureURL: </div>
+                    <div class="formItem"><input type="text" name="ppURL" value="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqnwIJlkGBGHjjWav0pQ-AaQvxDFxX9kldxw&usqp=CAU"></div>
+                    <div class="formItem">pushToken: </div>
+                    <div class="formItem"><input type="text" name="pushToken" value="ZYxw9876"></div>
+                    <div class="formItem">role: </div>
+                    <div class="formItem"><input type="text" name="role" value="bot"></div>
+                </form> 
+                <button onclick="createUser(); closeModel();">Add User</button>
+            </div>
+            <div class="modal-footer">
+                <h3>Footer</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="models.js"></script>
+
+</body>
+</html>
